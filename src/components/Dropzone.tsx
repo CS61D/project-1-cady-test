@@ -1,12 +1,15 @@
+import { useFile } from "@/FileContext";
 import { ImageMimeTypes } from "@/lib/constants";
 import { useDropzone } from "react-dropzone";
 
 export const Dropzone = () => {
+  const { addFile } = useFile();
   const { getRootProps, getInputProps } = useDropzone({
     accept: ImageMimeTypes,
     onDrop: (files: File[]) => {
       console.log("Files dropped:", files);
       // TODO: Do something with the dropped files
+      addFile(files);
     },
   });
 
